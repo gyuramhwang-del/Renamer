@@ -49,6 +49,53 @@ pyinstaller --onefile --windowed --name Renamer renamer.py
 
 생성된 `dist/Renamer.exe`를 실행하면 바로 GUI가 열립니다.
 
+## Grok 자동화 도구 (favorites 다운로드 + HD 업스케일 + 프롬프트 재실행)
+
+Grok 즐겨찾기 페이지에서 체크된 항목을 다운로드한 뒤 HD 업스케일을 적용하고, 기존에 사용한 프롬프트로 다시 영상을 돌리는 자동화 스크립트입니다.
+
+### 설치
+
+```bash
+pip install -r requirements.txt
+python -m playwright install chromium
+```
+
+### 사용 방법
+
+```bash
+python grok_automation.py --wait-login
+```
+
+주요 옵션:
+
+- `--profile-dir`: 로그인 세션을 저장하는 크롬 프로필 경로 (기본값: `grok_profile`)
+- `--download-dir`: 다운로드 저장 경로 (기본값: `downloads`)
+- `--headless`: 헤드리스 모드로 실행
+- `--max-items`: 처리할 체크 항목 수 제한 (0이면 제한 없음)
+- `--dry-run`: 체크된 항목만 확인하고 다운로드하지 않음
+- `--config`: 셀렉터를 JSON으로 오버라이드
+
+### 실행 파일 만들기 (Windows)
+
+```bash
+pip install pyinstaller
+pyinstaller --onefile --windowed --name GrokAutomation grok_automation.py
+```
+
+생성된 `dist/GrokAutomation.exe`를 실행하면 됩니다.
+
+### 셀렉터 설정
+
+Grok 페이지 UI가 바뀌면 셀렉터를 수정해야 할 수 있습니다. 예시 JSON:
+
+```json
+{
+  "checkbox_selector": "input[type=\"checkbox\"]",
+  "download_button_selector": "button:has-text(\"Download\")",
+  "hd_toggle_selector": "button:has-text(\"HD\")"
+}
+```
+
 ## 개발
 
 테스트 실행:
