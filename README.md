@@ -78,6 +78,7 @@ python grok_automation.py --wait-login
 - `--max-items`: 처리할 체크 항목 수 제한 (0이면 제한 없음)
 - `--dry-run`: 체크된 항목만 확인하고 다운로드하지 않음
 - `--config`: 셀렉터를 JSON으로 오버라이드
+- `--keep-open`: 작업 후 브라우저를 닫지 않고 유지
 
 ### 실행 파일 만들기 (Windows)
 
